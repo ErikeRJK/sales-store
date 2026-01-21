@@ -1,5 +1,9 @@
+import Header from "@/components/Header";
+
 export default function Home(){
   return(
-    <h1> Olá Mundo!</h1>
+    <div className="min-h-screen bg-[#121417]">
+      <Header/>
+    </div>
   )
 }
