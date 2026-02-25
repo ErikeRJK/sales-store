@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Input from "../ui/input";
 import { LuSearch } from "react-icons/lu";
+import { Button } from "../ui/button";
+import CustomButton from "../CustomButton";
 
 export default function Header(){
     return(
@@ -24,7 +26,15 @@ export default function Header(){
                     </div>
                 </div>
 
-                <div className="flex items-center space-x-4"></div>
+                <div className="flex items-center space-x-4">
+                    <Button variant={"ghost"}>
+                        Categorias
+                    </Button>
+
+                    <CustomButton >
+
+                    </CustomButton>
+                </div>
             </div>
         </header>
     )
