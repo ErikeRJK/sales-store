@@ -7,6 +7,7 @@ import CustomInput from "../CustomInput";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import requestApi from "@/helpers/requestApi";
 
 export default function LoginForm() {  
     const [email, setEmail] = useState("");
@@ -17,7 +18,16 @@ export default function LoginForm() {
         e.preventDefault();
 
         try {
-          
+            const response = await requestApi({
+                url: "/login",
+                method: "POST",
+                data: {
+                    email,
+                    password
+                }
+            })
+            localStorage.setItem("token", response.data.token)
+            router.push("/")
         } catch (error) {
             console.error(error)
             toast.error("Ocorreu um erro inesperado. Tente novamente.")
