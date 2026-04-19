@@ -47,10 +47,10 @@ export default function Header() {
         <div className="w-[33%] pl-4">
           <Link href="/" className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-md bg-linear-to-br from-blue-500 to-blue-500/70 flex items-center justify-center">
-              <span className="text-white font-bold text-lg">E</span>
+              <span className="text-white font-bold text-lg">S</span>
             </div>
             <span className="text-xl font-bold bg-linear-to-r from-blue-500 to-blue-500/70 bg-clip-text text-transparent">
-              ECommerce
+              store
             </span>
           </Link>
         </div>
