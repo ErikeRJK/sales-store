@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import requestApi from "@/helpers/requestApi";
+import { signIn } from "next-auth/react";
 
 export default function LoginForm() {  
     const [email, setEmail] = useState("");
@@ -18,16 +19,17 @@ export default function LoginForm() {
         e.preventDefault();
 
         try {
-            const response = await requestApi({
-                url: "/login",
-                method: "POST",
-                data: {
-                    email,
-                    password
-                }
-            })
-            localStorage.setItem("token", response.data.token)
-            localStorage.setItem("user", JSON.stringify(response.data.user))
+            const result = await signIn("credentials", {
+                email,
+                password,
+                redirect: false
+            }) 
+
+            if(!result?.error){
+                toast.error("Erro ao realizar login, Verifique suas credenciais")
+                return;
+            }
+
             router.push("/")
         } catch (error) {
             console.error(error)
