@@ -25,7 +25,7 @@ export default function LoginForm() {
                 redirect: false
             }) 
 
-            if(!result?.error){
+            if(result?.error){
                 toast.error("Erro ao realizar login, Verifique suas credenciais")
                 return;
             }

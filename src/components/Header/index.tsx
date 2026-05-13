@@ -9,7 +9,7 @@ import { DropdownMenu, DropdownMenuContent,
     DropdownMenuGroup, DropdownMenuItem, 
     DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface User {
     id: string
@@ -19,23 +19,12 @@ interface User {
 }
 
 export default function Header() {
-    const [user, setUser] = useState<User | null>(null)
+    const { user, signOut } = useAuth()
 
     const router = useRouter()
 
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem("user") || "{}") as User
-
-        if(user){
-            setUser(user)
-        }
-    }, [])
-
-    function signOut(){
-        localStorage.removeItem("token")
-        localStorage.removeItem("user")
-
-        router.push("/login")
+    async function handleSignOut(){
+      signOut()
     }
 
   return (
@@ -136,7 +125,7 @@ export default function Header() {
                   <DropdownMenuSeparator />
                   
                   <DropdownMenuItem
-                    onSelect={signOut}
+                    onSelect={handleSignOut}
                     className="flex items-center px-5 py-2 text-sm text-red-400
                     hover:bg-[#2c313a] hover:text-red-300 transition-colors cursor-pointer"
                   >
