@@ -26,7 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         duration-300 backdrop-blur-lg bg-[#181c22] rounded-lg">
             <div className="relative aspect-square overflow-hidden">
                 <Image 
-                    src={product.image}
+                    src={product.ProductsImages[0].url}
                     alt={product.name}
                     width={1000}
                     height={1000}
@@ -35,7 +35,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 />
 
                 <div className="absolute top-3 flex flex-col gap-2 left-3">
-                    {product.isNew && (
+                    {product.is_new && (
                         <Badge>
                             Novo
                         </Badge>
@@ -71,7 +71,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <div className="p-4">
                 <div className="space-y-2">
                     <Badge variant="outline">
-                        {product.category}
+                        {product.Category.name}
                     </Badge>
 
                     <h3 className="font-semibold line-clamp-2 text-sm 
@@ -88,9 +88,9 @@ export default function ProductCard({ product }: ProductCardProps) {
                         <span className="text-lg font-bold text-[#5593f7]">
                             {formatCurrency(product.price)}
                         </span>
-                        {product.originalPrice && (
+                        {product.original_price && (
                             <span className="text-sm line-through">
-                                {formatCurrency(product.originalPrice)}
+                                {formatCurrency(product.original_price)}
                             </span>
                         )}
                     </div>
