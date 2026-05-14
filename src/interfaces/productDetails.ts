@@ -14,7 +14,7 @@ export interface ProductDetails {
     is_new?: boolean
     discount?: number
     description: string
-    feature?: string[]
+    features?: string[]
     specifications?: Record<string, string>
     shipping: string
     warranty: string

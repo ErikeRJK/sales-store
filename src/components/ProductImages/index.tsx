@@ -2,14 +2,16 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 
 interface ProductImagesProps{
-    images: string[]
+    images: {
+        url: string
+    }[]
 }
 
 export default function ProductImages({ images = [] }: ProductImagesProps) {
     const [selectedImage, setSelectedImage] = useState("")
 
     useEffect(() => {
-        setSelectedImage(images[0])
+        setSelectedImage(images[0].url)
     }, [images])
 
     return (
@@ -29,14 +31,14 @@ export default function ProductImages({ images = [] }: ProductImagesProps) {
                     return (
                         <button
                             key={index}
-                            onClick={() => setSelectedImage(image)}
+                            onClick={() => setSelectedImage(image.url)}
                             className={`aspect-square w-20 overflow-hidden rounded-lg border
                                 border-[#343942]
-                                ${selectedImage === image && "ring-2 ring-[#5593f7]"}
+                                ${selectedImage === image.url && "ring-2 ring-[#5593f7]"}
                             `}
                         >
                             <Image 
-                                src={image}
+                                src={image.url}
                                 alt="Product Image"
                                 width={1000}
                                 height={1000}
